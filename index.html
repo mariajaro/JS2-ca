@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FriendsGram</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="dist/css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center align-items-center gx-5 min-vh-100">
+            <div class="col-12 col-md-6 text-center">
+                <h1>FriendsGram</h1>
+                <h4>Share with your friends what you are up to, and stay in touch</h4>
+                <div class="logIn mt-5">
+                    <form action="/profile" method="post" class="auth-form">
+                        <h2 class="mb-4">Login</h2>
+                        <div class="mb-3">
+                            <label for="email" class="form-label"></label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email address" required style="max-width: 300px; margin: 0 auto;">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label"></label>
+                            <input type="password" class="form-control" id="password" name="password" minlength="8" placeholder="Password" required style="max-width: 300px; margin: 0 auto;">
+                        </div>
+                        <a href="/feed.html" class="btn btn-primary">Login</a>
+                        <a href="/profile.html" class="btn btn-primary">Register</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
