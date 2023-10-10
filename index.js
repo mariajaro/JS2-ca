@@ -1,65 +1,82 @@
-const baseURL = "https://api.noroff.dev/api/v1";
-const emailInput = document.getElementById('email');
-const passwordInput = document.getElementById('password');
-const usernameInput = document.getElementById('username');
-const loginBtn = document.getElementById('loginBtn');
-const registerBtn = document.getElementById('registerBtn');
+const API_BASE_URL = 'https://api.noroff.dev';
 
-// Registration Functionality
-registerBtn.addEventListener('click', async (event) => {
-    event.preventDefault();
+async function registerUser(url, data) {
+  try {
+    const postData = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    };
 
-    const email = emailInput.value;
-    const password = passwordInput.value;
-    const name = usernameInput.value;
+    const response = await fetch(url, postData);
+    if (!response.ok) throw new Error('Registration failed');
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-    try {
-        const response = await fetch(baseURL + '/social/auth/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name, email, password })
-        });
+async function loginUser(url, data) {
+  try {
+    const postData = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    };
 
-        if (response.ok) {
-            alert('Registration successful. Please log in.');
-        } else {
-            const data = await response.json();
-            alert('Registration error: ' + data.message);
-        }
-    } catch (error) {
-        console.error('Network error:', error);
-        alert('Network error. Please try again.');
-    }
-});
+    const response = await fetch(url, postData);
+    if (!response.ok) throw new Error('Login failed');
+    const json = await response.json();
+    localStorage.setItem('accessToken', json.accessToken);
+    return json;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-// Login Functionality
-loginBtn.addEventListener('click', async (event) => {
-    event.preventDefault();
+async function fetchWithToken(url) {
+  try {
+    const token = localStorage.getItem('accessToken');
+    const getData = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
-    const email = emailInput.value;
-    const password = passwordInput.value;
+    const response = await fetch(url, getData);
+    if (!response.ok) throw new Error('Fetching with token failed');
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-    try {
-        const response = await fetch(baseURL + '/social/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password })
-        });
+// Use the functions sequentially
+async function main() {
+  const user = {
+    name: 'one_name',
+    email: 'one-name-a@noroff.no',
+    password: 'one-password',
+  };
 
-        const data = await response.json();
-        if (response.ok) {
-            // Save JWT to localStorage for future requests
-            localStorage.setItem('jwt', data.accessToken);
-            window.location.href = '/feed.html';  // redirect to the feed page
-        } else {
-            alert('Login error: ' + data.message);
-        }
-    } catch (error) {
-        console.error('Network error:', error);
-        alert('Network error. Please try again.');
-    }
-});
+  // Register
+  const registerResponse = await registerUser(`${API_BASE_URL}/api/v1/social/auth/register`, user);
+  console.log(registerResponse);
+
+  // Login
+  const loginResponse = await loginUser(`${API_BASE_URL}/api/v1/social/auth/login`, user);
+  console.log(loginResponse);
+
+  // Fetch using token
+  const fetchData = await fetchWithToken(API_BASE_URL + '/api/v1/social/posts');
+  console.log(fetchData);
+}
+
+// Execute the main function
+main();
