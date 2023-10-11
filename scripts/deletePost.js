@@ -1,6 +1,6 @@
 export async function deletePost(postId) {
   const API_URL = `https://api.noroff.dev/api/v1/social/posts/${postId}`;
-  const token = localStorage.getItem('accessToken'); // Ensure token is fetched 
+  const token = localStorage.getItem('accessToken');
 
   try {
       const response = await fetch(API_URL, {

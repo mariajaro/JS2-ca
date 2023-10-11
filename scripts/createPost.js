@@ -64,21 +64,19 @@ async function fetchAndDisplayPosts() {
 
 function displayPosts(posts) {
   const postsContainer = document.getElementById('postsContainer');
-  postsContainer.innerHTML = ''; // Clear previous posts
+  postsContainer.innerHTML = '';
 
   posts.forEach(post => {
       const postElement = document.createElement('a');
-      postElement.href = 'single-post.html'; // this is where the user will be navigated on clicking
-      postElement.dataset.id = post.id;      // store the post's ID as a data attribute
+      postElement.href = 'single-post.html';
+      postElement.dataset.id = post.id;
       postElement.className = 'post mb-4 border p-3 d-block';
 
-      // Check for media
       let mediaContent = '';
       if (post.media) {
           mediaContent = `<img src="${post.media}" alt="Post media" class="img-fluid mb-3">`;
       }
 
-      // Convert tags into a string format
       const tagsString = post.tags.join(', ');
 
       postElement.innerHTML = `
