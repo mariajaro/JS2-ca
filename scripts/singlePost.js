@@ -1,7 +1,11 @@
-// Fetching the token from localStorage
+import { updatePost } from './updatePost.js';
+import { deletePost } from './deletePost.js';
+
 const API_BASE_URL = 'https://api.noroff.dev';
 const token = localStorage.getItem('accessToken');
 const postId = localStorage.getItem('currentPostId');
+
+let currentPost = null;
 
 if (postId) {
     fetchPostById(postId);
@@ -10,7 +14,7 @@ if (postId) {
 }
 
 async function fetchPostById(postId) {
-    const API_URL = `https://api.noroff.dev/api/v1/social/posts/${postId}`;
+    const API_URL = `${API_BASE_URL}/api/v1/social/posts/${postId}`;
 
     try {
         const response = await fetch(API_URL, {
@@ -24,8 +28,8 @@ async function fetchPostById(postId) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        const post = await response.json();
-        displaySinglePost(post);
+        currentPost = await response.json();
+        displaySinglePost(currentPost);
     } catch (error) {
         console.error('Error fetching post:', error);
     }
@@ -33,15 +37,13 @@ async function fetchPostById(postId) {
 
 function displaySinglePost(post) {
     const postContainer = document.getElementById('singlePostContainer');
-    postContainer.innerHTML = ''; // Clear previous post content
+    postContainer.innerHTML = '';
 
-    // Check for media
     let mediaContent = '';
     if (post.media) {
         mediaContent = `<img src="${post.media}" alt="Post media" class="img-fluid mb-3">`;
     }
 
-    // Convert tags into a string format
     const tagsString = post.tags.join(', ');
 
     postContainer.innerHTML = `
@@ -54,9 +56,42 @@ function displaySinglePost(post) {
             <br>
             <small>Last updated: ${post.updated}</small>
         </div>
+        <button onclick="handleEditButtonClick()" class="btn btn-primary mt-2">Edit</button>
+        <button onclick="handleDeleteButtonClick(${post.id})" class="btn btn-danger mt-2 ml-2">Delete</button>
     `;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    fetchPostById();
-});
+window.handleEditButtonClick = function() {
+    if (currentPost) {
+        document.getElementById('editPostTitle').value = currentPost.title;
+        document.getElementById('editPostBody').value = currentPost.body;
+    }
+    var modal = new bootstrap.Modal(document.getElementById('editPostModal'));
+    modal.show();
+}
+
+window.submitEdit = async function() {
+    const title = document.getElementById('editPostTitle').value;
+    const body = document.getElementById('editPostBody').value;
+
+    let postData = {
+        title: title,
+        body: body,
+    };
+
+    try {
+        const updatedPost = await updatePost(postId, postData, token);
+        location.reload();
+    } catch(error) {
+        console.error("Error updating post:", error);
+    }
+}
+
+window.handleDeleteButtonClick = async function(postId) {
+    try {
+        const response = await deletePost(postId);
+        window.location.href = 'feed.html';
+    } catch(error) {
+        console.error("Error deleting post:", error);
+    }
+};
