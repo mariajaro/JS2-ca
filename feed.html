@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,131 +10,52 @@
 </head>
 <body>
     <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg bg-light">
-          <div class="container">
-              <button class=" navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
-                  aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-                <div class="row collapse navbar-collapse justify-content-between" id="navbarTogglerDemo01">
-                  <div class="d-flex align-items-center">
-                      <a class="col-2 navbar-brand me-lg-3 m-2 " href="/index.html">FriendsGram</a>
-                      <form class="col-6 d-flex m-2">
-                          <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
-                          <button class="btn btn-outline-primary btn-sm" type="submit">Search</button>
-                      </form>
-                      <div class="col-3 m-4 d-flex align-items-center">
-                        <a href="./profile.html" class="d-flex align-items-center text-decoration-none ">
-                            <span class="ms-lg-2 d-none d-lg-block">My profile</span>
-                        </a>
-                    </div>
-                  </div>
-              </div>
-          </div>
-      </nav>
-  </div>
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-md-3 ">
-        <div class="card d-none d-lg-flex">
-  
-          <div class="mx-auto text-center">
-              <img src="img/cats-eyes-2671903_640.jpg" class="card-img-top rounded-circle custom-rounded-image img-fluid mt-3" alt="profile-picture">
-              <h5 class="card-title mt-3">CatLady26</h5>
-          </div>
-  
-          <ul class="list-group list-group-flush mx-auto">
-              <li class="list-group-item">389 Followers</li>
-              <li class="list-group-item">238 Following</li>
-          </ul>
-  
-          <div class="card-body mx-auto text-center">
-              <a href="./profile.html" class="card-link">View My Profile</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 ">
-        <div class="container bg-light p-3">
-            <div class="row">                
-                <div class="col col-md-3">
-              <div class="mb-3">
-                <div class="input-group">
-                </div>
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="/index.html">FriendsGram</a>
+                <form class="d-flex" id="searchForm">
+                    <input class="form-control me-2" type="search" id="searchBar" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary btn-sm" type="submit">Search</button>
+                </form>                
+                <a href="./profile.html" class="text-decoration-none">
+                    <span>My profile</span>
+                </a>
             </div>
-            </div>
-            <div class="col col-md-3"></div>
-           </div>
-          <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-            <label for="floatingTextarea2">Start writing your post here...</label>
-          </div>
-          <button type="button" class="btn btn-primary  d-block mx-auto me-2 m-2">Publish</button>
-        </div>
-        <div class="container mt-2">
-          <div class="col-2">
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Sort</option>
-              <option value="1">Post 1</option>
-              <option value="2">Post 2</option>
-              <option value="3">Post 3</option>
-            </select>
-          </div>
-          </div>
-          <div class="container mt-5">
-          <div class="card mb-3">
-              <div class="card-header">
-                <div class="row align-items-center">
-                  <div class="col-auto d-flex align-items-center">
-                      <h6 class="card-title mb-0 ms-2">Simba</h6>
-                  </div>
-              </div>
-              </div>
-              <img src="img/cat-649164_1280.jpg" class="card-img-top" alt="post-image" >
-              <div class="card-body">
-                  <p class="card-text">Simba is my 3 years old cat. He is a very playfull cat and brings a lot of joy.</p>
-              </div>
-              <div class="card-footer">
-                  <button type="button" class="btn btn-primary"><i class="far fa-thumbs-up"></i> Like</button>
-              </div>
-          </div>
-        </div>
-        <div class="container mt-5">
-        <div class="card mb-3">
-            <div class="card-header">
-              <div class="row align-items-center">
-                <div class="col-auto d-flex align-items-center">
-                    <h6 class="card-title mb-0 ms-2">Lori</h6>
-                </div>
-            </div>
-            </div>
-            <img src="img/cat-1941089_1280.jpg" class="card-img-top" alt="post-image" >
-            <div class="card-body">
-                <p class="card-text">Lori is the new member of the family. She is a tiny orange kitten.</p>
-            </div>
-            <div class="card-footer">
-                <button type="button" class="btn btn-primary"><i class="far fa-thumbs-up"></i> Like</button>
-            </div>
-        </div>
-        </div>
-        <div class="container mt-5">
-          <div class="card mb-3">
-              <div class="card-header">
-                <div class="row align-items-center">
-                  <div class="col-auto d-flex align-items-center">
-                      <h6 class="card-title mb-0 ms-2">Simon</h6>
-                  </div>
-              </div>
-              </div>
-              <img src="img/cat-3261420_1280.jpg" class="card-img-top" alt="post-image" >
-              <div class="card-body">
-                  <p class="card-text">Simon is my oldest son. He is 7 years old. All he loves to do is eat and sleep.</p>
-              </div>
-              <div class="card-footer">
-                  <button type="button" class="btn btn-primary"><i class="far fa-thumbs-up"></i> Like</button>
-              </div>
-          </div>
-        </div>
-      </div>
+        </nav>
     </div>
-  </body>
-  </html>
+    </div>
+    <div class="container mt-5">
+<div class="container bg-light p-3 mt-4">
+    <h3>Create Post</h3>
+    <form id="createPostForm">
+        <div class="mb-3">
+            <label for="postTitle" class="form-label">Title</label>
+            <input type="text" class="form-control" id="postTitle" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="postBody" class="form-label">Body</label>
+            <textarea class="form-control" id="postBody" rows="3"></textarea>
+        </div>
+        
+        <div class="mb-3">
+            <label for="postMedia" class="form-label">Media URL</label>
+            <input type="url" class="form-control" id="postMedia">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Publish</button>
+    </form>
+</div>
+<div class="container mt-4">
+    <div id="filterControls" class="bg-light p-3">
+        <h4>Filter Posts</h4>
+        <input type="text" id="tagFilter" placeholder="Filter by tag">
+        <input type="checkbox" id="activeFilter" checked> Show only active
+        <button id="filterButton" class="btn btn-primary btn-sm">Apply Filter</button>
+    </div>
+        <div id="postsContainer" class="container mt-5">
+        </div>
+    </div>
+    <script type="module" src="scripts/fetchAndCreatePosts.js"></script>
+</body>
+</html>
