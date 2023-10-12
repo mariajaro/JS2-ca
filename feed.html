@@ -8,23 +8,22 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="dist/css/styles.css">
 </head>
-
 <body>
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container">
                 <a class="navbar-brand" href="/index.html">FriendsGram</a>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" id="searchForm">
+                    <input class="form-control me-2" type="search" id="searchBar" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-primary btn-sm" type="submit">Search</button>
-                </form>
+                </form>                
                 <a href="./profile.html" class="text-decoration-none">
                     <span>My profile</span>
                 </a>
             </div>
         </nav>
     </div>
-
+    </div>
     <div class="container mt-5">
 <div class="container bg-light p-3 mt-4">
     <h3>Create Post</h3>
@@ -47,9 +46,16 @@
         <button type="submit" class="btn btn-primary">Publish</button>
     </form>
 </div>
+<div class="container mt-4">
+    <div id="filterControls" class="bg-light p-3">
+        <h4>Filter Posts</h4>
+        <input type="text" id="tagFilter" placeholder="Filter by tag">
+        <input type="checkbox" id="activeFilter" checked> Show only active
+        <button id="filterButton" class="btn btn-primary btn-sm">Apply Filter</button>
+    </div>
         <div id="postsContainer" class="container mt-5">
         </div>
     </div>
-    <script type="module" src="scripts/createPost.js"></script>
+    <script type="module" src="scripts/fetchAndCreatePosts.js"></script>
 </body>
 </html>
