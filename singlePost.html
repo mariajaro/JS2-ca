@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FriendsGram</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="dist/css/styles.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="/feed.html">FriendsGram</a>
+                <form class="d-flex" id="searchForm">
+                    <input class="form-control me-2" type="search" id="searchBar" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary btn-sm" type="submit">Search</button>
+                </form>                
+                <a href="./index.html" class="text-decoration-none">
+                    <span>Sign out</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div id="singlePostContainer" class="container mt-5">
+                    <button onclick="editPostFunction()" class="btn btn-primary">Edit</button>
+                    <button onclick="deletePostFunction()" class="btn btn-danger">Delete</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editPostModal" tabindex="-1" aria-labelledby="editPostModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editPostModalLabel">Edit Post</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                  <div class="mb-3">
+                      <label for="editPostTitle" class="form-label">Title</label>
+                      <input type="text" class="form-control" id="editPostTitle">
+                  </div>
+                  <div class="mb-3">
+                      <label for="editPostBody" class="form-label">Body</label>
+                      <textarea class="form-control" id="editPostBody" rows="3"></textarea>
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="submitEdit()">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script type="module" src="scripts/singlePost.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
