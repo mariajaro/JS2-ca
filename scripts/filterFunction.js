@@ -26,8 +26,14 @@ export async function fetchPostsFiltered(tag = null, isActive = true) {
         }
     }
 
+    const token = localStorage.getItem('accessToken');
+
     try {
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -35,5 +41,6 @@ export async function fetchPostsFiltered(tag = null, isActive = true) {
         return posts;
     } catch (error) {
         console.error("Error fetching filtered posts:", error);
+        return [];
     }
 }
