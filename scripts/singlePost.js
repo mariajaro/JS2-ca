@@ -1,10 +1,28 @@
 import { updatePost } from './updatePost.js';
 import { deletePost } from './deletePost.js';
 
+/**
+ * Base URL for the API.
+ * @constant {string}
+ */
 const API_BASE_URL = 'https://api.noroff.dev';
+
+/** 
+ * Token fetched from local storage.
+ * @constant {string|null}
+ */
 const token = localStorage.getItem('accessToken');
+
+/** 
+ * Current Post ID fetched from local storage.
+ * @constant {string|null}
+ */
 const postId = localStorage.getItem('currentPostId');
 
+/**
+ * The current post being viewed or edited.
+ * @type {Object|null}
+ */
 let currentPost = null;
 
 if (postId) {
@@ -13,6 +31,12 @@ if (postId) {
     console.error('No post ID found in localStorage.');
 }
 
+/**
+ * Fetches a post by its ID.
+ *
+ * @param {string} postId - The ID of the post.
+ * @throws Will throw an error if the request fails.
+ */
 async function fetchPostById(postId) {
     const API_URL = `${API_BASE_URL}/api/v1/social/posts/${postId}`;
 
@@ -35,6 +59,11 @@ async function fetchPostById(postId) {
     }
 }
 
+/**
+ * Displays a single post's details on the page.
+ *
+ * @param {Object} post - The post object.
+ */
 function displaySinglePost(post) {
     const postContainer = document.getElementById('singlePostContainer');
     postContainer.innerHTML = '';
@@ -61,6 +90,9 @@ function displaySinglePost(post) {
     `;
 }
 
+/**
+ * Handles the button click to show the edit modal.
+ */
 window.handleEditButtonClick = function() {
     if (currentPost) {
         document.getElementById('editPostTitle').value = currentPost.title;
@@ -70,6 +102,9 @@ window.handleEditButtonClick = function() {
     modal.show();
 }
 
+/**
+ * Submits edited changes for a post.
+ */
 window.submitEdit = async function() {
     const title = document.getElementById('editPostTitle').value;
     const body = document.getElementById('editPostBody').value;
@@ -87,6 +122,11 @@ window.submitEdit = async function() {
     }
 }
 
+/**
+ * Handles the delete button click action.
+ *
+ * @param {string} postId - The ID of the post to delete.
+ */
 window.handleDeleteButtonClick = async function(postId) {
     try {
         const response = await deletePost(postId);
