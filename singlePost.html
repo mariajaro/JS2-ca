@@ -11,27 +11,17 @@
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
-                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="row collapse navbar-collapse justify-content-between" id="navbarTogglerDemo01">
-                <div class="d-flex align-items-center">
-                    <a class="col-2 navbar-brand me-lg-3 m-2" href="/index.html">FriendsGram</a>
-                    <form class="col-6 d-flex m-2">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-primary btn-sm" type="submit">Search</button>
-                    </form>
-                    <div class="col-3 m-4 d-flex align-items-center">
-                        <a href="./profile.html" class="d-flex align-items-center text-decoration-none">
-                            <span class="ms-lg-2 d-none d-lg-block">My profile</span>
-                        </a>
-                    </div>
-                </div>
+                <a class="navbar-brand" href="/feed.html">FriendsGram</a>
+                <form class="d-flex" id="searchForm">
+                    <input class="form-control me-2" type="search" id="searchBar" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary btn-sm" type="submit">Search</button>
+                </form>                
+                <a href="./index.html" class="text-decoration-none">
+                    <span>Sign out</span>
+                </a>
             </div>
-        </div>
-    </nav>
-</div>
+        </nav>
+    </div>
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-3"></div>
