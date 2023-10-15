@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +11,7 @@
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container">
-                <a class="navbar-brand" href="/index.html">FriendsGram</a>
+                <a class="navbar-brand" href="/feed.html">FriendsGram</a>
                 <form class="d-flex" id="searchForm">
                     <input class="form-control me-2" type="search" id="searchBar" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-primary btn-sm" type="submit">Search</button>
@@ -23,38 +22,39 @@
             </div>
         </nav>
     </div>
-    </div>
     <div class="container mt-5">
-<div class="container bg-light p-3 mt-4">
-    <h3>Create Post</h3>
-    <form id="createPostForm">
-        <div class="mb-3">
-            <label for="postTitle" class="form-label">Title</label>
-            <input type="text" class="form-control" id="postTitle" required>
-        </div>
-        
-        <div class="mb-3">
-            <label for="postBody" class="form-label">Body</label>
-            <textarea class="form-control" id="postBody" rows="3"></textarea>
-        </div>
-        
-        <div class="mb-3">
-            <label for="postMedia" class="form-label">Media URL</label>
-            <input type="url" class="form-control" id="postMedia">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Publish</button>
-    </form>
-</div>
-<div class="container mt-4">
-    <div id="filterControls" class="bg-light p-3">
-        <h4>Filter Posts</h4>
-        <input type="text" id="tagFilter" placeholder="Filter by tag">
-        <input type="checkbox" id="activeFilter" checked> Show only active
-        <button id="filterButton" class="btn btn-primary btn-sm">Apply Filter</button>
-    </div>
-        <div id="postsContainer" class="container mt-5">
-        </div>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="bg-light p-3 mt-4">
+                    <h3>Create Post</h3>
+                    <form id="createPostForm">
+                        <div class="mb-3">
+                            <label for="postTitle" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="postTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="postBody" class="form-label">Body</label>
+                            <textarea class="form-control" id="postBody" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="postMedia" class="form-label">Media URL</label>
+                            <input type="url" class="form-control" id="postMedia">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Publish</button>
+                    </form>
+                </div>
+                <div class="mt-4">
+                    <div id="filterControls" class="bg-light p-3">
+                        <h4>Filter Posts</h4>
+                        <input type="text" id="tagFilter" placeholder="Filter by tag">
+                        <input type="checkbox" id="activeFilter" checked> Show only active
+                        <button id="filterButton" class="btn btn-primary btn-sm">Apply Filter</button>
+                    </div>
+                    <div id="postsContainer" class="mt-5">
+                    </div>
+                </div>
+            </div>
+        </div> 
     </div>
     <script type="module" src="scripts/fetchAndCreatePosts.js"></script>
 </body>
