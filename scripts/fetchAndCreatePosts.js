@@ -3,7 +3,9 @@ const token = localStorage.getItem('accessToken');
 import { fetchPostsFiltered } from './filterFunction.js';
 
 
-// Function to create a new post
+/**
+ * Create a new post.
+ */ 
 async function createPost() {
   const title = document.getElementById('postTitle').value;
   const body = document.getElementById('postBody').value;
@@ -41,41 +43,47 @@ async function createPost() {
   }
 }
 
-// Filter function 
+/**
+ * Apply post filters.
+ */
 function applyFilter() {
     const tag = document.getElementById('tagFilter').value;
     const isActive = document.getElementById('activeFilter').checked;
 
     fetchPostsFiltered(tag, isActive)
         .then(posts => {
-            displayPosts(posts); // Update the posts display with the filtered posts
+            displayPosts(posts);
         });
 }
 
-// Search function
-
+/**
+ * Search posts based on a query.
+ */
 async function searchPosts() {
-    const searchTerm = document.getElementById('searchBar').value.toLowerCase(); // Get the search term
+    const searchTerm = document.getElementById('searchBar').value.toLowerCase();
     
-    // If the search term is empty, fetch and display all posts
     if (!searchTerm) {
         fetchAndDisplayPosts();
         return;
     }
 
     try {
-        const allPosts = await fetchAllPosts(); // Assuming fetchAllPosts fetches all posts from the server
+        const allPosts = await fetchAllPosts();
         const filteredPosts = allPosts.filter(post =>
             post.title.toLowerCase().includes(searchTerm) ||
             post.body.toLowerCase().includes(searchTerm)
         );
         
-        displayPosts(filteredPosts); // Display only the posts that match the search
+        displayPosts(filteredPosts); 
     } catch (error) {
         console.error("Error searching posts:", error);
     }
 }
 
+/**
+ * Fetch all available posts.
+ * @returns {Array} Array of posts
+ */
 async function fetchAllPosts() {
     const API_URL = `${API_BASE_URL}/api/v1/social/posts`;
 
@@ -94,13 +102,13 @@ async function fetchAllPosts() {
         return await response.json();
     } catch (error) {
         console.error('Error fetching posts:', error);
-        throw error;  // Re-throwing the error to be caught in the calling function
+        throw error;
     }
 }
 
-
-
-// Function to fetch and display posts
+/**
+ * Fetch and display posts.
+ */
 async function fetchAndDisplayPosts() {
     const API_URL = `${API_BASE_URL}/api/v1/social/posts`;
 
@@ -123,14 +131,18 @@ async function fetchAndDisplayPosts() {
     }
 }
 
+/**
+ * Render posts to the DOM.
+ * @param {Array} posts - Array of posts to display
+ */
 function displayPosts(posts) {
   const postsContainer = document.getElementById('postsContainer');
-  postsContainer.innerHTML = ''; // Clear previous posts
+  postsContainer.innerHTML = '';
 
   posts.forEach(post => {
       const postElement = document.createElement('a');
-      postElement.href = 'single-post.html'; // this is where the user will be navigated on clicking
-      postElement.dataset.id = post.id;      // store the post's ID as a data attribute
+      postElement.href = 'single-post.html'; 
+      postElement.dataset.id = post.id;   
       postElement.className = 'post mb-4 border p-3 d-block';
 
       // Check for media
@@ -164,8 +176,10 @@ function displayPosts(posts) {
   });
 }
 
+// Initial call to fetch and display posts
 fetchAndDisplayPosts();
 
+// Event listeners
 document.getElementById('createPostForm').addEventListener('submit', function(event) {
   event.preventDefault();
   createPost();
